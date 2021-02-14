@@ -20,6 +20,9 @@ const preferences = new Store({
     theme: {
       default: 'dark'
     },
+    language: {
+      default: 'zh'
+    },
     assistant: {
       default: true
     },

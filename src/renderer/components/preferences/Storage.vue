@@ -1,6 +1,6 @@
 <template>
   <AppForm>
-    <AppFormItem label="Storage">
+    <AppFormItem :label="$t('preferences.storage')">
       <div class="preferences__form-item">
         <AppInput
           v-model="storagePath"
@@ -10,18 +10,19 @@
           class="preferences__input"
         />
         <AppButton @click="onChangeStorage">
-          Move storage
+          <!-- 移动存储目录 -->
+          {{ $t('preferences.moveStorage') }}
         </AppButton>
         <AppButton @click="onOpenStorage">
-          Open storage
+          <!-- 打开存储目录 -->
+          {{ $t('preferences.openStorage') }}
         </AppButton>
       </div>
       <div class="desc">
-        To use sync services like iCloud Drive, Google Drive of Dropbox, simply
-        move storage to the corresponding synced folders.
+        {{ $t('preferences.storageDesc') }}
       </div>
     </AppFormItem>
-    <AppFormItem label="Backup">
+    <AppFormItem :label="$t('preferences.backup')">
       <div class="preferences__form-item">
         <AppInput
           v-model="app.backupPath"
@@ -31,16 +32,20 @@
           class="preferences__input"
         />
         <AppButton @click="onMoveBackup">
-          Change folder
+          <!-- 修改备份目录 -->
+          {{ $t('preferences.changeFolder') }}
         </AppButton>
         <AppButton @click="onBackup">
-          Backup now
+          <!-- 立即备份 -->
+          {{ $t('preferences.backupNow') }}
         </AppButton>
       </div>
       <div class="desc">
-        Backup will be created automatically when massCode is running.
+        <!-- 备份描述 -->
+        {{ $t('preferences.backupDesc') }}
       </div>
-      <h5>Backups</h5>
+      <!-- 备份列表 -->
+      <h5>{{ $t('preferences.backups') }}</h5>
       <div
         ref="backup"
         class="backups"
@@ -55,11 +60,14 @@
           <span
             class="backups__item-action"
             @click="onRestore(i.date)"
-          >Restore</span>
+          >{{
+            $t('preferences.restore')
+          }}</span>
         </div>
       </div>
     </AppFormItem>
-    <AppFormItem label="Count">
+    <!-- 数量 -->
+    <AppFormItem :label="$t('preferences.count')">
       {{ countText }}
     </AppFormItem>
   </AppForm>
@@ -129,10 +137,9 @@ export default {
           this.$store.commit('app/SET_STORAGE_PATH', path)
         } catch (err) {
           ipcRenderer.send('message', {
-            message: 'Error',
+            message: this.$t('preferences.changeFolderMessage'),
             type: 'error',
-            detail:
-              'Folder already contains db files. Please select another folder.'
+            detail: this.$t('preferences.changeFolderDetail')
           })
         }
       }
@@ -164,10 +171,9 @@ export default {
     },
     async onRestore (time) {
       const buttonId = dialog.showMessageBoxSync({
-        message: 'Are you sure you want to restore for this timestamp?',
-        detail:
-          'During restore from backup, the current library will be overwritten.',
-        buttons: ['Confirm', 'Cancel'],
+        message: this.$t('preferences.restoreMessage'),
+        detail: this.$t('preferences.restoreDetail'),
+        buttons: [this.$t('global.confirm'), this.$t('global.cancel')],
         defaultId: 0,
         cancelId: 1
       })

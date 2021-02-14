@@ -6,6 +6,7 @@ import db from '@/datastore'
 import eventBus from '@/event-bus'
 import { clickOutside } from './directives'
 import UiKit from '@/components/uikit'
+import i18n from './lang'
 
 if (!process.env.IS_WEB) Vue.use(require('vue-electron'))
 
@@ -18,6 +19,7 @@ Vue.use(UiKit)
 
 /* eslint-disable no-new */
 new Vue({
+  i18n,
   store,
   router,
   render: h => h(App)

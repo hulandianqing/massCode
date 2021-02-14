@@ -1,6 +1,6 @@
 <template>
   <div class="folders">
-    <SidebarList title="Folders">
+    <SidebarList :title="$t('main.folders')">
       <DraggableTree
         ref="tree"
         :data="localFolders"

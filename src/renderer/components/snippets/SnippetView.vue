@@ -73,6 +73,12 @@
             @change:lang="onChangeLanguage($event, index)"
             @change:layout="onChangeLayout"
           />
+          <!--          <MarkdownVditor-->
+          <!--            v-if="i.language === 'markdown' && i.value"-->
+          <!--            :model="i.value"-->
+          <!--            :is-tabs="fragments.length > 1"-->
+          <!--          />-->
+          <!-- 改为vditor -->
           <MarkdownPreview
             v-if="i.language === 'markdown' && i.value"
             :model="i.value"
@@ -231,7 +237,7 @@ export default {
     onAddTab () {
       const index = this.localSnippet.content.length
       const fragment = {
-        label: `Fragment ${index + 1}`,
+        label: `${this.$t('main.fragment')} ${index + 1}`,
         language: null,
         value: null
       }
@@ -258,19 +264,21 @@ export default {
     onTabContext (fragment) {
       menu.popup([
         {
-          label: `Rename "${fragment.label}"`,
+          label: `${this.$t('main.rename')} "${fragment.label}"`,
           click: () => {}
         },
         {
           type: 'separator'
         },
         {
-          label: `Delete ${fragment.label}"`,
+          label: `${this.$t('global.delete')} ${fragment.label}"`,
           click: () => {
             const buttonId = dialog.showMessageBoxSync({
-              message: `Are you sure you want to permanently delete "${fragment.label}"?`,
-              detail: 'You cannot undo this action.',
-              buttons: ['Delete', 'Cancel'],
+              message: `${this.$t('main.deleteFragmentMessage')} "${
+                this.label
+              }"?`,
+              detail: this.$t('main.cannotUndoAction'),
+              buttons: [this.$t('global.delete'), this.$t('global.cancel')],
               defaultId: 0,
               cancelId: 1
             })

@@ -12,7 +12,7 @@
     </div>
     <div class="meta">
       <div class="folder">
-        {{ model.folder ? model.folder.name : 'Inbox' }}
+        {{ model.folder ? model.folder.name : this.$t('main.inbox') }}
       </div>
       <div class="date">
         {{ date }}

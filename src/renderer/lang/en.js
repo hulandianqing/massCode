@@ -1,0 +1,87 @@
+export default {
+  global: {
+    cancel: 'Cancel',
+    confirm: 'Confirm',
+    enable: 'Enable',
+    delete: 'Delete'
+  },
+  main: {
+    library: 'LIBRARY',
+    tags: 'TAGS',
+    inbox: 'Inbox',
+    favorites: 'Favorites',
+    allSnippets: 'All Snippets',
+    trash: 'Trash',
+    folders: 'FOLDERS',
+    default: 'Default',
+    snippetName: 'Untitled snippet',
+    fragment: 'Fragment',
+    deleteFragmentMessage: 'Are you sure you want to permanently delete',
+    addFavorites: 'Add to Favorites',
+    removeFavorites: 'Remove from Favorites',
+    duplicate: 'Duplicate',
+    deleteFolderMessage: 'Are you sure you want to delete',
+    deleteFolderDetail: 'All snippets in this folder will be moved to trash.',
+    defaultLanguage: 'Default Language',
+    sortBy: 'Sort By',
+    dateModified: 'Date Modified',
+    dateCreated: 'Date Created',
+    name: 'Name',
+    rename: 'Rename',
+    emptyTrash: 'Empty Trash',
+    emptyTrashMessage:
+      'Are you sure you want to permanently delete all snippets in Trash?',
+    trashDelete: 'Delete Now',
+    trashDeleteMessage: 'Are you sure you want to permanently delete snippet?',
+    tagDelete: 'Are you sure you want to permanently delete the tag',
+    cannotUndoAction: 'You cannot undo this action.'
+  },
+  preferences: {
+    preferences: 'Preferences',
+    general: 'General',
+    language: 'Language',
+    backup: 'Backup',
+    backups: 'Backups',
+    backupNow: 'Backup now',
+    changeFolder: 'Change folder',
+    changeFolderMessage: 'Error',
+    changeFolderDetail:
+      'Folder already contains db files. Please select another folder.',
+    backupDesc:
+      'Backup will be created automatically when massCode is running.\n',
+    storage: 'Storage',
+    moveStorage: 'Move storage',
+    openStorage: 'Open storage',
+    storageDesc:
+      'To use sync services like iCloud Drive, Google Drive of Dropbox, simply move storage to the corresponding synced folders.\n',
+    restore: 'Restore',
+    restoreMessage: 'Are you sure you want to restore for this timestamp?',
+    restoreDetail:
+      'During restore from backup, the current library will be overwritten.',
+    count: 'Count',
+    interface: 'Interface',
+    theme: 'Theme',
+    editor: 'Editor',
+    tabSize: 'Tab size',
+    tabSizeDesc: 'The number of spaces a tab is equal to.',
+    indentUsing: 'Indent using',
+    indentUsingDesc: 'Select type of indentation.',
+    whitespace: 'Whitespace',
+    whitespaceDesc:
+      'Controls how the editor should render whitespace characters.',
+    wordWrapping: 'Word Wrapping',
+    wordWrappingDesc: 'Controls how lines should wrap.',
+    Format: 'Format',
+    semicolons: 'Semicolons',
+    semicolonsDesc: 'Print semicolons at the ends of statements.',
+    singleQuotes: 'Single Quotes',
+    singleQuotesDesc: 'Use single quotes instead of double quotes.',
+    assistant: 'Assistant',
+    appearance: 'Appearance',
+    enableAssistant: 'Enable Assistant',
+    appearanceDesc:
+      'App Assistant lets you access snippets right from the Tray. (macOS only)',
+    shortcut: 'Shortcut',
+    apply: 'Apply'
+  }
+}

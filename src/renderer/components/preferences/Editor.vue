@@ -1,54 +1,54 @@
 <template>
   <AppForm>
-    <h4>Editor</h4>
-    <AppFormItem label="Tab size">
+    <h4>{{ $t('preferences.editor') }}</h4>
+    <AppFormItem :label="$t('preferences.tabSize')">
       <AppInput v-model="tabSize" />
       <div class="desc">
-        The number of spaces a tab is equal to.
+        {{ $t('preferences.tabSizeDesc') }}
       </div>
     </AppFormItem>
-    <AppFormItem label="Indent using">
+    <AppFormItem :label="$t('preferences.indentUsing')">
       <AppSelect
         v-model="insertSpaces"
         :options="insertSpacesOptions"
       />
       <div class="desc">
-        Select type of indentation.
+        {{ $t('preferences.indentUsingDesc') }}
       </div>
     </AppFormItem>
-    <AppFormItem label="Whitespace">
+    <AppFormItem :label="$t('preferences.whitespace')">
       <AppSelect
         v-model="renderWhitespace"
         :options="renderWhitespaceOptions"
       />
       <div class="desc">
-        Controls how the editor should render whitespace characters.
+        {{ $t('preferences.whitespaceDesc') }}
       </div>
     </AppFormItem>
-    <AppFormItem label="Word wrapping">
+    <AppFormItem :label="$t('preferences.wordWrapping')">
       <AppSelect
         v-model="wordWrap"
         :options="wordWrapOptions"
       />
       <div class="desc">
-        Controls how lines should wrap.
+        {{ $t('preferences.wordWrappingDesc') }}
       </div>
     </AppFormItem>
     <h4>Format</h4>
-    <AppFormItem label="Semicolons">
+    <AppFormItem :label="$t('preferences.semicolons')">
       <AppCheckbox v-model="prettierSemi">
-        Enable
+        {{ $t('global.enable') }}
       </AppCheckbox>
       <div class="desc">
-        Print semicolons at the ends of statements.
+        {{ $t('preferences.semicolonsDesc') }}
       </div>
     </AppFormItem>
-    <AppFormItem label="Single Quotes">
+    <AppFormItem :label="$t('preferences.singleQuotes')">
       <AppCheckbox v-model="prettierQuotes">
-        Enable
+        {{ $t('global.enable') }}
       </AppCheckbox>
       <div class="desc">
-        Use single quotes instead of double quotes.
+        {{ $t('preferences.singleQuotesDesc') }}
       </div>
     </AppFormItem>
   </AppForm>

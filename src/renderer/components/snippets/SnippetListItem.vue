@@ -18,7 +18,7 @@
     </div>
     <div class="meta">
       <div class="folder">
-        {{ model.folder ? model.folder.name : 'Inbox' }}
+        {{ model.folder ? model.folder.name : this.$t('main.inbox') }}
       </div>
       <div class="date">
         {{ date }}
@@ -201,7 +201,7 @@ export default {
 
       let menuItems = [
         {
-          label: 'Add to Favorites',
+          label: this.$t('main.addFavorites'),
           click: () => {
             const payload = {
               $set: { isFavorites: true }
@@ -215,7 +215,7 @@ export default {
           type: 'separator'
         },
         {
-          label: 'Duplicate',
+          label: this.$t('main.duplicate'),
           click: () => {
             const snippet = Object.assign({}, this.model)
             snippet.createdAt = new Date()
@@ -223,14 +223,16 @@ export default {
             delete snippet._id
 
             this.$store.dispatch('snippets/addSnippet', {
-              folderId: snippet.folderId,
+              folderId: snippet.folderId
+                ? snippet.folderId
+                : this.selectedFolderId,
               snippet
             })
             track('snippets/duplicate')
           }
         },
         {
-          label: 'Delete',
+          label: this.$t('global.delete'),
           click: async () => {
             const payload = {
               $set: { isDeleted: true }
@@ -255,10 +257,10 @@ export default {
           type: 'separator'
         },
         {
-          label: 'Sort By',
+          label: this.$t('main.sortBy'),
           submenu: [
             {
-              label: 'Date Modified',
+              label: this.$t('main.dateModified'),
               type: 'radio',
               checked: this.sort === 'updatedAt',
               click: () => {
@@ -267,7 +269,7 @@ export default {
               }
             },
             {
-              label: 'Date Created',
+              label: this.$t('main.dateCreated'),
               type: 'radio',
               checked: this.sort === 'createdAt',
               click: () => {
@@ -276,7 +278,7 @@ export default {
               }
             },
             {
-              label: 'Name',
+              label: this.$t('main.name'),
               type: 'radio',
               checked: this.sort === 'name',
               click: () => {
@@ -290,7 +292,7 @@ export default {
 
       if (isFavorites) {
         const removeFromFavorites = {
-          label: 'Remove from Favorites',
+          label: this.$t('main.removeFavorites'),
           click: () => {
             const payload = {
               $set: { isFavorites: false }
@@ -305,13 +307,13 @@ export default {
 
       if (this.selectedFolderId === 'trash') {
         const deleteNow = {
-          label: 'Delete Now',
+          label: this.$t('main.trashDelete'),
           click: async () => {
-            const plural = ids.length > 1 ? 'snippets' : 'snippet'
+            // const plural = ids.length > 1 ? 'snippets' : 'snippet'
             const buttonId = dialog.showMessageBoxSync({
-              message: `Are you sure you want to permanently delete ${plural}?`,
-              detail: 'You cannot undo this action.',
-              buttons: ['Delete', 'Cancel'],
+              message: this.$t('main.trashDeleteMessage'),
+              detail: this.$t('main.cannotUndoAction'),
+              buttons: [this.$t('global.delete'), this.$t('global.cancel')],
               defaultId: 0,
               cancelId: 1
             })

@@ -2,7 +2,7 @@
   <div class="preferences">
     <div class="preferences__wrapper">
       <div class="preferences__header">
-        <h3>Preferences</h3>
+        <h3>{{ $t('preferences.preferences') }}</h3>
         <AppIcon
           class="close"
           name="x"
@@ -12,13 +12,19 @@
       <div class="preferences__body">
         <AppMenu v-model="active">
           <AppMenuItem
-            label="Storage"
+            :label="$t('preferences.general')"
+            value="general"
+          >
+            <General v-if="active === 'general'" />
+          </AppMenuItem>
+          <AppMenuItem
+            :label="$t('preferences.storage')"
             value="storage"
           >
             <Storage v-if="active === 'storage'" />
           </AppMenuItem>
           <AppMenuItem
-            label="Interface"
+            :label="$t('preferences.interface')"
             value="interface"
           >
             <AppForm>
@@ -27,16 +33,16 @@
           </AppMenuItem>
 
           <AppMenuItem
-            label="Editor"
+            :label="$t('preferences.editor')"
             value="editor"
           >
-            <Editor v-if="active == 'editor'" />
+            <Editor v-if="active === 'editor'" />
           </AppMenuItem>
           <AppMenuItem
-            label="Assistant"
+            :label="$t('preferences.assistant')"
             value="assistant"
           >
-            <Assistant v-if="active == 'assistant'" />
+            <Assistant v-if="active === 'assistant'" />
           </AppMenuItem>
         </AppMenu>
       </div>
@@ -50,6 +56,7 @@ import Storage from '@/components/preferences/Storage.vue'
 import Interface from '@/components/preferences/Interface.vue'
 import Assistant from '@/components/preferences/Assistant.vue'
 import Editor from '@/components/preferences/Editor.vue'
+import General from '@/components/preferences/General.vue'
 
 export default {
   name: 'Preferences',
@@ -58,12 +65,13 @@ export default {
     Storage,
     Interface,
     Assistant,
-    Editor
+    Editor,
+    General
   },
 
   data () {
     return {
-      active: 'storage'
+      active: 'general'
     }
   },
 

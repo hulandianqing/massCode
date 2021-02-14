@@ -16,7 +16,8 @@ export default {
     backups: [], // Временные метки
     markdownPreview: false,
     updateAvailable: false,
-    showTags: false
+    showTags: false,
+    language: electronStore.preferences.get('language')
   },
   getters: {
     isTagsShow (state) {
@@ -31,6 +32,9 @@ export default {
           }
         })
         .sort((a, b) => (a > b ? 1 : -1))
+    },
+    language (state) {
+      return state.language
     }
   },
   mutations: {
@@ -63,6 +67,9 @@ export default {
     },
     SET_BACKUPS (state, backups) {
       state.backups = backups
+    },
+    SET_LANGUAGE (state, language) {
+      state.language = language
     }
   },
   actions: {
@@ -79,6 +86,10 @@ export default {
     setTheme ({ commit }, theme) {
       commit('SET_THEME', theme)
       electronStore.preferences.set('theme', theme)
+    },
+    setLanguage ({ commit }, language) {
+      commit('SET_LANGUAGE', language)
+      electronStore.preferences.set('language', language)
     },
     async setShowTags ({ commit, dispatch, rootGetters }, bool) {
       if (bool) {

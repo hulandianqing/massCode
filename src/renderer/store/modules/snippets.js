@@ -2,6 +2,7 @@ import db from '@/datastore'
 import electronStore from '@@/store'
 import { defaultLibraryQuery } from '@/util/helpers'
 import uniqBy from 'lodash-es/uniqBy'
+import i18n from '@/lang'
 
 // Fallback stored sorting value
 // @see https://github.com/antonreshetov/massCode/pull/74
@@ -26,7 +27,10 @@ export default {
     searchQueryTray: null,
     newSnippetId: null,
     sort,
-    activeFragment: { snippetId: null, index: 0 },
+    activeFragment: {
+      snippetId: null,
+      index: 0
+    },
     count: null
   },
   getters: {
@@ -157,7 +161,9 @@ export default {
       function getSnippets () {
         return new Promise((resolve, reject) => {
           db.snippets.find(defaultQuery, (err, snippets) => {
-            if (err) reject(err)
+            if (err) {
+              reject(err)
+            }
             resolve(snippets)
           })
         })
@@ -273,10 +279,14 @@ export default {
 
       if (!snippet) {
         snippet = {
-          name: 'Untitled snippet',
+          name: i18n.t('main.snippetName'),
           folderId: folderId,
           content: [
-            { label: 'Fragment 1', language: defaultLanguage, value: '' }
+            {
+              label: `${i18n.t('main.fragment')} 1`,
+              language: defaultLanguage,
+              value: ''
+            }
           ],
           tags: [],
           isFavorites: false,

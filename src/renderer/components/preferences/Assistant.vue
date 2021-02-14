@@ -1,17 +1,17 @@
 <template>
   <AppForm>
-    <AppFormItem label="Appearance">
+    <AppFormItem :label="$t('preferences.appearance')">
       <AppCheckbox
         v-model="isAssistant"
         :disabled="app.os !== 'darwin'"
       >
-        Enable Assistant
+        {{ $t('preferences.enableAssistant') }}
       </AppCheckbox>
       <div class="desc">
-        App Assistant lets you access snippets right from the Tray. (macOS only)
+        {{ $t('preferences.appearanceDesc') }}
       </div>
     </AppFormItem>
-    <AppFormItem label="Shortcut">
+    <AppFormItem :label="$t('preferences.shortcut')">
       <AppInput
         v-model="shortcut"
         class="preferences__input"
@@ -21,7 +21,7 @@
         :disabled="disabled"
         @click="onApply"
       >
-        Apply
+        {{ $t('preferences.apply') }}
       </AppButton>
     </AppFormItem>
   </AppForm>

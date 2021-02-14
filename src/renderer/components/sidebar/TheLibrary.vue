@@ -9,7 +9,10 @@
       <SidebarList
         v-model="activeTitle"
         title="Library"
-        :title-array="[{ label: 'Library' }, { label: 'Tags' }]"
+        :title-array="[
+          { label: this.$t('main.library') },
+          { label: this.$t('main.tags') }
+        ]"
       >
         <template v-if="activeTitle === 0">
           <SidebarListItem
@@ -58,10 +61,14 @@ export default {
   data () {
     return {
       library: [
-        { label: 'Inbox', id: 'inBox', icon: 'inbox' },
-        { label: 'Favorites', id: 'favorites', icon: 'star' },
-        { label: 'All Snippets', id: 'allSnippets', icon: 'archive' },
-        { label: 'Trash', id: 'trash', icon: 'trash' }
+        { label: this.$t('main.inbox'), id: 'inBox', icon: 'inbox' },
+        { label: this.$t('main.favorites'), id: 'favorites', icon: 'star' },
+        {
+          label: this.$t('main.allSnippets'),
+          id: 'allSnippets',
+          icon: 'archive'
+        },
+        { label: this.$t('main.trash'), id: 'trash', icon: 'trash' }
       ]
     }
   },

@@ -175,17 +175,19 @@ export default {
       this.context = true
       const contextMenu = menu.popup([
         {
-          label: 'Rename',
+          label: this.$t('main.rename'),
           click: () => this.setEditable()
         },
 
         {
-          label: 'Delete',
+          label: this.$t('global.delete'),
           click: () => {
             const buttonId = dialog.showMessageBoxSync({
-              message: `Are you sure you want to delete "${this.title}" folder?`,
-              detail: 'All snippets in this folder will be moved to trash.',
-              buttons: ['Delete', 'Cancel'],
+              message: `${this.$t('main.deleteFolderMessage')} "${
+                this.title
+              }" ${this.$t('main.folders')}?`,
+              detail: this.$t('main.deleteFolderDetail'),
+              buttons: [this.$t('global.delete'), this.$t('global.cancel')],
               defaultId: 0,
               cancelId: 1
             })
@@ -197,7 +199,7 @@ export default {
         },
         { type: 'separator' },
         {
-          label: 'Default Language',
+          label: this.$t('main.defaultLanguage'),
           submenu: this.languagesMenu
         }
       ])
@@ -209,13 +211,12 @@ export default {
       this.context = true
       const contextMenu = menu.popup([
         {
-          label: 'Empty Trash',
+          label: this.$t('main.emptyTrash'),
           click: () => {
             const buttonId = dialog.showMessageBoxSync({
-              message:
-                'Are you sure you want to permanently delete all snippets in Trash?',
-              detail: 'You cannot undo this action.',
-              buttons: ['Delete', 'Cancel'],
+              message: this.$t('main.emptyTrashMessage'),
+              detail: this.$t('main.cannotUndoAction'),
+              buttons: [this.$t('global.delete'), this.$t('global.cancel')],
               defaultId: 0,
               cancelId: 1
             })
@@ -234,12 +235,12 @@ export default {
       this.context = true
       const contextMenu = menu.popup([
         {
-          label: 'Delete',
+          label: this.$t('global.delete'),
           click: () => {
             const buttonId = dialog.showMessageBoxSync({
-              message: 'Are you sure you want to permanently delete the tag?',
-              detail: 'You cannot undo this action.',
-              buttons: ['Delete', 'Cancel'],
+              message: this.$t('main.tagDeleteMessage'),
+              detail: this.$t('main.cannotUndoAction'),
+              buttons: [this.$t('global.delete'), this.$t('global.cancel')],
               defaultId: 0,
               cancelId: 1
             })

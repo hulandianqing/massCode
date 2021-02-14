@@ -1,5 +1,5 @@
 <template>
-  <AppFormItem label="Theme">
+  <AppFormItem :label="$t('preferences.theme')">
     <AppSelect
       v-model="themeSelected"
       :options="themes"

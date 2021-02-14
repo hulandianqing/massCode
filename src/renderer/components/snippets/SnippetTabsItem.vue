@@ -80,19 +80,21 @@ export default {
     onTabContext () {
       menu.popup([
         {
-          label: `Rename "${this.label}"`,
+          label: `${this.$t('main.rename')} "${this.label}"`,
           click: () => this.setEditable()
         },
         {
           type: 'separator'
         },
         {
-          label: `Delete ${this.label}`,
+          label: `${this.$t('global.delete')} ${this.label}"`,
           click: () => {
             const buttonId = dialog.showMessageBoxSync({
-              message: `Are you sure you want to permanently delete "${this.label}"?`,
-              detail: 'You cannot undo this action.',
-              buttons: ['Delete', 'Cancel'],
+              message: `${this.$t('main.deleteFragmentMessage')} "${
+                this.label
+              }"?`,
+              detail: this.$t('main.cannotUndoAction'),
+              buttons: [this.$t('global.delete'), this.$t('global.cancel')],
               defaultId: 0,
               cancelId: 1
             })
